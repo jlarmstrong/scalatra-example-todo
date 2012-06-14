@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="org.eclipse.jetty_jetty-util_8.1.0.RC5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.eclipse.jetty/jetty-util/jars/jetty-util-8.1.0.RC5.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.eclipse.jetty/jetty-util/docs/jetty-util-8.1.0.RC5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.eclipse.jetty/jetty-util/srcs/jetty-util-8.1.0.RC5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
