@@ -2,4 +2,6 @@ target
 project/boot
 project/target
 project/plugins/target
-
+.idea
+.idea_modules
+.DS_Store
