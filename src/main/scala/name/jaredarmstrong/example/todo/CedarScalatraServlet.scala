@@ -16,6 +16,8 @@ with AuthenticationSupport
 with FlashMapSupport
 {
 
+  private val oneWeek = 7 * 24 * 3600
+
 
   before() {
     if (!isAuthenticated) {
@@ -25,12 +27,14 @@ with FlashMapSupport
 
 
   get("/") {
-
+     <html>
+       <body>
+       Please <a href="/login">login</a>.
+       </body>
+     </html>
   }
 
   get("/login") {
-    redirectIfAuthenticated
-
     redirectIfAuthenticated
 
     contentType = "text/html"
@@ -47,6 +51,37 @@ with FlashMapSupport
         </form>
       </body>
     </html>
+  }
+
+
+  post("/login") {
+    redirectIfAuthenticated
+
+
+    scentry.authenticate('UserPassword)
+
+    var email: String = cookies.get("todos.email") match {
+      case Some(v) => v.toString
+      case None => ""
+    }
+
+    if (isAuthenticated) {
+      logger.info("Success **")
+
+      email = params.getOrElse("userName","").toString()
+      session("email") = email
+
+      response.addCookie(Cookie("todos.email", email)(CookieOptions(secure = false, maxAge = oneWeek, httpOnly = false)).toServletCookie)
+
+      redirect(scentryConfig.returnTo)
+    } else {
+      logger.info("Failed Login **")
+    }
+
+    flash += ("error" -> "Unable to authenticate. Please try again.")
+
+    redirect("/login")
+
   }
 
   get("/loggedin") {
